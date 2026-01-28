@@ -2,15 +2,12 @@ import { useEffect, useRef } from 'react'
 import { motion, useSpring, useTransform } from 'framer-motion'
 
 export function AnimatedBackground() {
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
-  
   const springConfig = { damping: 25, stiffness: 120 }
   const mouseX = useSpring(0, springConfig)
   const mouseY = useSpring(0, springConfig)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
       mouseX.set(e.clientX)
       mouseY.set(e.clientY)
     }

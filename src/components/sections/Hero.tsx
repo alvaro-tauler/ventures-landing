@@ -1,10 +1,12 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { SplineDropdown } from '../SplineDropdown'
 import { MagneticButton, MagneticOutlineButton } from '../MagneticButton'
 import { MaskRevealText, FadeUp } from '../KineticText'
 
 export function Hero() {
+  const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   
   const { scrollYProgress } = useScroll({
@@ -75,19 +77,19 @@ export function Hero() {
               transition={{ duration: 1, ease: [0.19, 1, 0.22, 1], delay: 0.1 }}
             >
               <div className="w-8 sm:w-12 h-[1px] bg-gradient-to-r from-[#E65500] to-transparent" />
-              <span className="eyebrow tracking-[0.15em] sm:tracking-[0.2em] text-[0.6rem] sm:text-[0.65rem]">Venture Builder AI-First</span>
+              <span className="eyebrow tracking-[0.15em] sm:tracking-[0.2em] text-[0.6rem] sm:text-[0.65rem]">{t('hero.eyebrow')}</span>
             </motion.div>
 
             {/* Main Headline */}
             <h1 className="heading-display text-[clamp(1.75rem,5vw,4.25rem)] mb-4 sm:mb-5 md:mb-6 text-left leading-[1.05] tracking-[-0.04em]">
               <span className="block">
-                <MaskRevealText delay={0.2}>Convertimos</MaskRevealText>
+                <MaskRevealText delay={0.2}>{t('hero.headline1')}</MaskRevealText>
               </span>
               <span className="block">
-                <MaskRevealText delay={0.3}>oportunidades</MaskRevealText>
+                <MaskRevealText delay={0.3}>{t('hero.headline2')}</MaskRevealText>
               </span>
               <span className="block">
-                <span className="text-white">en </span>
+                <span className="text-white">{t('hero.headline3')} </span>
                 <motion.span 
                   className="inline-block relative"
                   initial={{ opacity: 0, y: 50, rotateX: 90 }}
@@ -102,13 +104,13 @@ export function Hero() {
                       backgroundClip: 'text'
                     }}
                   >
-                    activos digitales
+                    {t('hero.headline4')}
                   </span>
                   <span className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-0.5 sm:h-1 bg-gradient-to-r from-[#4169E1] via-[#E65500] to-transparent opacity-40" />
                 </motion.span>
               </span>
               <span className="block">
-                <MaskRevealText delay={0.7}>rentables.</MaskRevealText>
+                <MaskRevealText delay={0.7}>{t('hero.headline5')}</MaskRevealText>
               </span>
             </h1>
 
@@ -116,9 +118,9 @@ export function Hero() {
             <FadeUp delay={0.8}>
               <div className="border-l-2 border-[#4169E1] pl-3 sm:pl-4 md:pl-5 mb-5 sm:mb-6 md:mb-8 max-w-[560px]">
                 <p className="text-[0.8rem] sm:text-sm md:text-base text-[#999] leading-[1.6] font-light">
-                  Operativizamos oportunidades de mercado mediante{' '}
-                  <span className="text-white font-medium">ingeniería de software</span> e{' '}
-                  <span className="text-white font-medium">IA de alto rendimiento</span>.
+                  {t('hero.subtitle')}{' '}
+                  <span className="text-white font-medium">{t('hero.subtitleHighlight1')}</span> {t('hero.subtitleConnector')}{' '}
+                  <span className="text-white font-medium">{t('hero.subtitleHighlight2')}</span>.
                 </p>
               </div>
             </FadeUp>
@@ -132,12 +134,12 @@ export function Hero() {
             >
               <MagneticButton href="#propuesta" strength={0.4}>
                 <span className="btn-primary inline-block w-full sm:w-auto text-center">
-                  Explorar modelo
+                  {t('hero.ctaExplore')}
                 </span>
               </MagneticButton>
               <MagneticOutlineButton href="#contacto">
                 <span className="btn-outline inline-block w-full sm:w-auto text-center">
-                  Iniciar proyecto
+                  {t('hero.ctaStart')}
                 </span>
               </MagneticOutlineButton>
             </motion.div>
@@ -160,9 +162,9 @@ export function Hero() {
         <a 
           href="#propuesta" 
           className="group flex flex-col items-center gap-1 sm:gap-1.5"
-          aria-label="Scroll hacia abajo"
+          aria-label={t('hero.scrollAriaLabel')}
         >
-          <span className="text-[9px] sm:text-[10px] font-mono text-[#555] uppercase tracking-widest">Scroll</span>
+          <span className="text-[9px] sm:text-[10px] font-mono text-[#555] uppercase tracking-widest">{t('hero.scroll')}</span>
           <motion.div
             className="w-4 h-7 sm:w-5 sm:h-8 rounded-full border border-[#333] flex items-start justify-center pt-1 sm:pt-1.5"
             animate={{ borderColor: ['#333', '#4169E1', '#333'] }}

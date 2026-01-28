@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { FullWidthCTA } from '../MagneticButton'
 
 export function Result() {
   return (

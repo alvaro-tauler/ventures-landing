@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { KineticHeading } from '../KineticText'
 
 // Icons - Responsive sizes via className
 const CodeChipIcon = () => (
@@ -45,8 +44,6 @@ export function ValueProposition() {
   // Split screen magnetization animation - reduced on mobile for better performance
   const leftX = useTransform(scrollYProgress, [0.2, 0.5], [-30, 0])
   const rightX = useTransform(scrollYProgress, [0.2, 0.5], [30, 0])
-  const centerScale = useTransform(scrollYProgress, [0.4, 0.6], [0.5, 1])
-  const centerOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1])
   const lineWidth = useTransform(scrollYProgress, [0.3, 0.6], ['0%', '100%'])
   
   return (

@@ -1,0 +1,226 @@
+{
+  "nav": {
+    "propuesta": "Proposal",
+    "enfoque": "Approach",
+    "activos": "Assets",
+    "contacto": "Contact",
+    "iniciarProyecto": "Start project"
+  },
+  "hero": {
+    "eyebrow": "AI-First Venture Builder",
+    "headline1": "We transform",
+    "headline2": "opportunities",
+    "headline3": "into",
+    "headline4": "profitable digital assets",
+    "headline5": ".",
+    "subtitle": "We operationalize market opportunities through",
+    "subtitleHighlight1": "software engineering",
+    "subtitleHighlight2": "high-performance AI",
+    "subtitleConnector": "and",
+    "ctaExplore": "Explore model",
+    "ctaStart": "Start project",
+    "scroll": "Scroll",
+    "scrollAriaLabel": "Scroll down"
+  },
+  "thesis": {
+    "eyebrow": "Thesis Statement",
+    "title": "The levers of technological success",
+    "description": "In today's digital economy, competitive advantage lies not only in the idea, but in the",
+    "descHighlight1": "technical deployment capability",
+    "descHighlight2": "iteration speed",
+    "descConnector": "and",
+    "catalyst": "acts as a catalyst, leveraging",
+    "catalystLevers": "4 key levers",
+    "catalystEnd": ":",
+    "levers": {
+      "ideation": {
+        "title": "Ideation",
+        "description": "Result of a rational market analysis."
+      },
+      "demand": {
+        "title": "Latent Demand",
+        "description": "Validation of product necessity."
+      },
+      "distribution": {
+        "title": "Distribution Channel",
+        "description": "Automatic deployment in a validated network."
+      },
+      "operations": {
+        "title": "Elite Operations",
+        "description": "Multidisciplinary team with commercial, technical and strategic expertise."
+      }
+    }
+  },
+  "valueProposition": {
+    "eyebrow": "Value Proposition",
+    "title": "Our",
+    "titleHighlight": "Joint Venture",
+    "subtitle": "The Convergence of",
+    "subtitleHighlight1": "Distribution",
+    "subtitleHighlight2": "Execution",
+    "subtitleConnector": "and",
+    "tauler": {
+      "label": "Tauler Group",
+      "title": "Technical Capital",
+      "subtitle": "& Execution",
+      "capabilities": [
+        "Product Engineering: Proprietary Full-Stack development and scalable architecture.",
+        "Applied Artificial Intelligence: Implementation of LLMs and predictive models.",
+        "Technology Risk Mitigation: Continuous deployment and security methodologies.",
+        "Operational, commercial and strategic management."
+      ]
+    },
+    "partner": {
+      "label": "Industrial Partner",
+      "title": "Relational Capital",
+      "subtitle": "& Context",
+      "capabilities": [
+        "Market Capillarity: Direct and validated access to the end customer base.",
+        "Domain Knowledge: Identification of inefficiencies and sector pain points.",
+        "Commercial Liquidity: Immediate distribution capacity of the developed asset."
+      ]
+    },
+    "quote": "The Joint Venture Building model is based on",
+    "quoteHighlight1": "absolute alignment of incentives",
+    "quoteHighlight2": "complementarity of capitals",
+    "quoteConnector": "and the",
+    "quoteAttribution": "Tauler Thesis"
+  },
+  "pillars": {
+    "eyebrow": "Execution Framework",
+    "title": "Value Generation Methodology.",
+    "scrollHint": "// SCROLL →",
+    "description": "A strict protocol designed to transform investment theses into operational software.",
+    "endTitle": "Asset Ready",
+    "endSubtitle": "To scale or liquidity",
+    "items": [
+      {
+        "number": "01",
+        "title": "Thesis Validation",
+        "subtitle": "Alpha Stage",
+        "description": "Rigorous analysis of economic and technical viability. We audit market depth and distribution capacity before committing engineering resources. Only projects with a clear path to ROI advance.",
+        "metrics": ["Market Depth", "Technical Feasibility", "ROI Path"]
+      },
+      {
+        "number": "02",
+        "title": "High-Speed Engineering",
+        "subtitle": "Build",
+        "description": "Deployment of our proprietary AI-powered technology stack. The goal is to reach critical functionality in short cycles, prioritizing architectural robustness and future scalability.",
+        "metrics": ["AI-Powered Stack", "4-Week Cycles", "Scalable Architecture"]
+      },
+      {
+        "number": "03",
+        "title": "Integration & Deployment",
+        "subtitle": "Deploy",
+        "description": "Operational implementation of the asset in distribution channels. Real usage metrics monitoring and data-driven optimization to ensure adoption and retention.",
+        "metrics": ["Channel Integration", "Real-time Metrics", "PMF Optimization"]
+      },
+      {
+        "number": "04",
+        "title": "Asset Structuring",
+        "subtitle": "Liquidity / Scale",
+        "description": "Product consolidation as an independent business unit. Definition of exit or recurrence strategy: Tech spin-off, IP licensing or recurring cash flow generation.",
+        "metrics": ["Spin-off Ready", "IP Licensing", "Recurring Revenue"]
+      }
+    ]
+  },
+  "assets": {
+    "eyebrow": "Asset Typology",
+    "title1": "Technology",
+    "title2": "Asset Typology.",
+    "description": "We develop solutions designed with",
+    "descHighlight1": "industrial",
+    "descHighlight2": "financial logic",
+    "descConnector": "and",
+    "items": {
+      "automation": {
+        "tag": "AI Operations",
+        "title": "AI Automation",
+        "description": "Process automation through language models and generative AI. Reduction of operational costs and increased throughput."
+      },
+      "saas": {
+        "tag": "Product",
+        "title": "Vertical SaaS",
+        "description": "Specialized software platforms for industrial niches. End-to-end solutions with high retention and solid unit economics."
+      },
+      "data": {
+        "tag": "Intelligence",
+        "title": "Data Engines",
+        "description": "Data pipelines and business intelligence systems. Transformation of raw data into actionable competitive advantages."
+      },
+      "process": {
+        "tag": "IP",
+        "title": "Process IP",
+        "description": "Digitization and protection of proprietary methodologies. Conversion of tacit knowledge into scalable intellectual property."
+      },
+      "consumer": {
+        "tag": "B2C",
+        "title": "Consumer LTV",
+        "description": "B2C digital products with recurring monetization models. Maximizing customer lifetime value through personalization."
+      }
+    },
+    "cta": {
+      "title1": "Your project",
+      "title2": "here",
+      "description": "Let's build your next digital asset together.",
+      "button": "Let's start"
+    }
+  },
+  "result": {
+    "eyebrow": "Tauler Venture Builder",
+    "title": "Engineering applied to",
+    "titleHighlight": "Equity",
+    "titleEnd": "creation.",
+    "description": "If your organization has a dominant market position and seeks to materialize high-value technology assets, Tauler Venture Builder provides the necessary execution infrastructure."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's build the",
+    "titleHighlight": "future",
+    "titleEnd": "together.",
+    "description": "Do you have a market opportunity and need a first-class technology partner? We're ready to execute.",
+    "email": "Email",
+    "location": "Location",
+    "locationValue": "Spain",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "company": "Company / Project",
+      "companyPlaceholder": "Your company name",
+      "idea": "Your vision",
+      "ideaPlaceholder": "Tell us briefly what you have in mind...",
+      "submit": "Send proposal",
+      "submitting": "Sending...",
+      "error": "There was an error sending. Please try again.",
+      "successTitle": "Received!",
+      "successMessage": "Our team will contact you within 24 hours.",
+      "sendAnother": "Send another message"
+    }
+  },
+  "footer": {
+    "ventureBuilder": "Venture Builder",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "legal": "Legal Notice",
+    "builtWith": "Built with precision",
+    "online": "ONLINE"
+  },
+  "cookieBanner": {
+    "message": "We use cookies to improve your experience.",
+    "moreInfo": "More info",
+    "settings": "Settings",
+    "reject": "Reject",
+    "accept": "Accept",
+    "necessary": "Necessary",
+    "analytics": "Analytics",
+    "preferences": "Preferences",
+    "save": "Save"
+  },
+  "modals": {
+    "privacyTitle": "Privacy Policy and Data Protection",
+    "cookiesTitle": "Cookie Policy",
+    "legalTitle": "Legal Notice"
+  }
+}
