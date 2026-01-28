@@ -1,0 +1,7 @@
+export * from './Hero'
+export * from './Thesis'
+export * from './ValueProposition'
+export * from './Pillars'
+export * from './Assets'
+export * from './Result'
+export * from './Contact'
