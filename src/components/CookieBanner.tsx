@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 interface CookieBannerProps {
   onOpenCookiesPolicy: () => void
@@ -8,6 +9,7 @@ interface CookieBannerProps {
 const COOKIE_CONSENT_KEY = 'tauler_cookie_consent'
 
 export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
   const [showPreferences, setShowPreferences] = useState(false)
   const [preferences, setPreferences] = useState({
@@ -74,12 +76,12 @@ export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                   {/* Content */}
                   <p className="flex-1 text-[#999] text-xs leading-relaxed">
-                    Usamos cookies para mejorar tu experiencia.{' '}
+                    {t('cookieBanner.message')}{' '}
                     <button
                       onClick={onOpenCookiesPolicy}
                       className="text-[#4169E1] hover:underline"
                     >
-                      Más info
+                      {t('cookieBanner.moreInfo')}
                     </button>
                   </p>
                   
@@ -89,19 +91,19 @@ export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
                       onClick={() => setShowPreferences(!showPreferences)}
                       className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#666] hover:text-white transition-colors"
                     >
-                      Ajustes
+                      {t('cookieBanner.settings')}
                     </button>
                     <button
                       onClick={handleRejectAll}
                       className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#666] hover:text-white border border-[rgba(255,255,255,0.1)] hover:border-[rgba(255,255,255,0.2)] rounded transition-all"
                     >
-                      Rechazar
+                      {t('cookieBanner.reject')}
                     </button>
                     <button
                       onClick={handleAcceptAll}
                       className="px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-white bg-[#4169E1] hover:bg-[#5179F1] rounded transition-all"
                     >
-                      Aceptar
+                      {t('cookieBanner.accept')}
                     </button>
                   </div>
                 </div>
@@ -124,7 +126,7 @@ export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
                           <div className="w-8 h-4 rounded-full bg-[#4169E1]/30 flex items-center justify-end px-0.5 cursor-not-allowed">
                             <div className="w-3 h-3 rounded-full bg-[#4169E1]" />
                           </div>
-                          <span className="text-[#888] text-[11px]">Necesarias</span>
+                          <span className="text-[#888] text-[11px]">{t('cookieBanner.necessary')}</span>
                         </div>
                         
                         {/* Analytics Cookies */}
@@ -141,7 +143,7 @@ export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
                               preferences.analytics ? 'bg-[#4169E1]' : 'bg-[#444]'
                             }`} />
                           </button>
-                          <span className="text-[#888] text-[11px]">Analíticas</span>
+                          <span className="text-[#888] text-[11px]">{t('cookieBanner.analytics')}</span>
                         </div>
                         
                         {/* Preference Cookies */}
@@ -158,7 +160,7 @@ export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
                               preferences.preferences ? 'bg-[#4169E1]' : 'bg-[#444]'
                             }`} />
                           </button>
-                          <span className="text-[#888] text-[11px]">Preferencias</span>
+                          <span className="text-[#888] text-[11px]">{t('cookieBanner.preferences')}</span>
                         </div>
                         
                         {/* Save Button */}
@@ -166,7 +168,7 @@ export function CookieBanner({ onOpenCookiesPolicy }: CookieBannerProps) {
                           onClick={handleSavePreferences}
                           className="ml-auto px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white bg-[#4169E1] hover:bg-[#5179F1] rounded transition-all"
                         >
-                          Guardar
+                          {t('cookieBanner.save')}
                         </button>
                       </div>
                     </div>

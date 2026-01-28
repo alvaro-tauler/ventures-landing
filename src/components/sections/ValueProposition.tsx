@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 // Icons - Responsive sizes via className
 const CodeChipIcon = () => (
@@ -20,20 +21,8 @@ const NetworkIcon = () => (
   </svg>
 )
 
-const taulerCapabilities = [
-  'Ingeniería de Producto: Desarrollo Full-Stack propietario y arquitectura escalable.',
-  'Inteligencia Artificial Aplicada: Implementación de LLMs y modelos predictivos.',
-  'Mitigación de Riesgo Tecnológico: Metodologías de despliegue continuo y seguridad.',
-  'Gestión operativa, comercial y estratégica.',
-]
-
-const partnerCapabilities = [
-  'Capilaridad de Mercado: Acceso directo y validado a la base de clientes final.',
-  'Conocimiento de Dominio: Identificación de ineficiencias y puntos de dolor sectoriales.',
-  'Liquidez Comercial: Capacidad de distribución inmediata del activo desarrollado.',
-]
-
 export function ValueProposition() {
+  const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   
   const { scrollYProgress } = useScroll({
@@ -45,6 +34,9 @@ export function ValueProposition() {
   const leftX = useTransform(scrollYProgress, [0.2, 0.5], [-30, 0])
   const rightX = useTransform(scrollYProgress, [0.2, 0.5], [30, 0])
   const lineWidth = useTransform(scrollYProgress, [0.3, 0.6], ['0%', '100%'])
+
+  const taulerCapabilities = t('valueProposition.tauler.capabilities', { returnObjects: true }) as string[]
+  const partnerCapabilities = t('valueProposition.partner.capabilities', { returnObjects: true }) as string[]
   
   return (
     <section 
@@ -81,12 +73,12 @@ export function ValueProposition() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="eyebrow mb-3 sm:mb-4 md:mb-6 block text-[0.6rem] sm:text-[0.65rem]">Propuesta de valor</span>
+              <span className="eyebrow mb-3 sm:mb-4 md:mb-6 block text-[0.6rem] sm:text-[0.65rem]">{t('valueProposition.eyebrow')}</span>
               <h1 className="heading-display text-[clamp(1.5rem,4.5vw,3.75rem)] max-w-4xl mx-auto mb-3 sm:mb-4 md:mb-6">
-                Nuestro modelo <span className="text-[#4169E1]">Joint Venture</span>
+                {t('valueProposition.title')} <span className="text-[#4169E1]">{t('valueProposition.titleHighlight')}</span>
               </h1>
               <h2 className="text-[clamp(0.875rem,2.5vw,1.875rem)] text-[#888] font-light max-w-3xl mx-auto">
-                La Convergencia entre <span className="text-white">Distribución</span> y <span className="text-white">Ejecución</span>.
+                {t('valueProposition.subtitle')} <span className="text-white">{t('valueProposition.subtitleHighlight1')}</span> {t('valueProposition.subtitleConnector')} <span className="text-white">{t('valueProposition.subtitleHighlight2')}</span>.
               </h2>
             </motion.div>
             
@@ -110,14 +102,14 @@ export function ValueProposition() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    <span className="text-[0.6rem] sm:text-[0.65rem] md:text-xs font-sans text-[#666] uppercase tracking-[0.12em] font-semibold">Tauler Group</span>
+                    <span className="text-[0.6rem] sm:text-[0.65rem] md:text-xs font-sans text-[#666] uppercase tracking-[0.12em] font-semibold">{t('valueProposition.tauler.label')}</span>
                   </motion.div>
                   
                   <h3 className="text-xl sm:text-2xl md:text-[1.75rem] font-bold mb-1 text-white tracking-tight">
-                    Capital Técnico
+                    {t('valueProposition.tauler.title')}
                   </h3>
                   <p className="text-sm sm:text-base text-[#4169E1] font-medium mb-5 sm:mb-6 md:mb-8">
-                    & Ejecución
+                    {t('valueProposition.tauler.subtitle')}
                   </p>
                   
                   <ul className="bullet-orange space-y-3">
@@ -154,14 +146,14 @@ export function ValueProposition() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
                   >
-                    <span className="text-[0.6rem] sm:text-[0.65rem] md:text-xs font-sans text-[#666] uppercase tracking-[0.12em] font-semibold">Socio Industrial</span>
+                    <span className="text-[0.6rem] sm:text-[0.65rem] md:text-xs font-sans text-[#666] uppercase tracking-[0.12em] font-semibold">{t('valueProposition.partner.label')}</span>
                   </motion.div>
                   
                   <h3 className="text-xl sm:text-2xl md:text-[1.75rem] font-bold mb-1 text-white tracking-tight">
-                    Capital Relacional
+                    {t('valueProposition.partner.title')}
                   </h3>
                   <p className="text-sm sm:text-base text-[#777] font-medium mb-5 sm:mb-6 md:mb-8">
-                    & Contexto
+                    {t('valueProposition.partner.subtitle')}
                   </p>
                   
                   <ul className="bullet-orange space-y-3">
@@ -194,16 +186,16 @@ export function ValueProposition() {
               <div className="absolute -top-4 sm:-top-6 left-1/2 -translate-x-1/2 text-4xl sm:text-5xl md:text-6xl text-[#4169E1] opacity-10 font-serif leading-none">"</div>
               
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#666] max-w-2xl mx-auto italic leading-relaxed relative z-10">
-                El modelo de Joint Venture Building se fundamenta en la{' '}
-                <span className="text-white font-medium">alineación absoluta de incentivos</span>
-                {' '}y la{' '}
-                <span className="text-white font-medium">complementariedad de capitales</span>.
+                {t('valueProposition.quote')}{' '}
+                <span className="text-white font-medium">{t('valueProposition.quoteHighlight1')}</span>
+                {' '}{t('valueProposition.quoteConnector')}{' '}
+                <span className="text-white font-medium">{t('valueProposition.quoteHighlight2')}</span>.
               </p>
               
               {/* Attribution line */}
               <div className="mt-4 sm:mt-5 md:mt-6 flex items-center justify-center gap-2 sm:gap-3">
                 <div className="w-6 sm:w-8 h-[1px] bg-gradient-to-r from-transparent to-[#4169E1]" />
-                <span className="text-[10px] sm:text-xs font-mono text-[#444] uppercase tracking-[0.15em] sm:tracking-[0.2em]">Tauler Thesis</span>
+                <span className="text-[10px] sm:text-xs font-mono text-[#444] uppercase tracking-[0.15em] sm:tracking-[0.2em]">{t('valueProposition.quoteAttribution')}</span>
                 <div className="w-6 sm:w-8 h-[1px] bg-gradient-to-l from-transparent to-[#4169E1]" />
               </div>
             </motion.div>

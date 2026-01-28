@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { KineticHeading, FadeUp } from '../KineticText'
 
 // Custom icons for each lever
@@ -40,38 +41,12 @@ const OperationsIcon = () => (
   </svg>
 )
 
-const levers = [
-  {
-    id: '01',
-    title: 'Ideación',
-    description: 'Resultado de un análisis racional del mercado.',
-    icon: IdeationIcon,
-    color: '#4169E1',
-  },
-  {
-    id: '02',
-    title: 'Demanda latente',
-    description: 'Validación de la necesidad del producto.',
-    icon: DemandIcon,
-    color: '#6495ED',
-  },
-  {
-    id: '03',
-    title: 'Canal de distribución',
-    description: 'Despliegue automático en una red validada.',
-    icon: DistributionIcon,
-    color: '#E65500',
-  },
-  {
-    id: '04',
-    title: 'Operativa de élite',
-    description: 'Equipo multidisciplinar con expertise comercial, técnico y estratégico.',
-    icon: OperationsIcon,
-    color: '#F87171',
-  },
-]
+const leverIcons = [IdeationIcon, DemandIcon, DistributionIcon, OperationsIcon]
+const leverColors = ['#4169E1', '#6495ED', '#E65500', '#F87171']
+const leverKeys = ['ideation', 'demand', 'distribution', 'operations'] as const
 
 export function Thesis() {
+  const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   
   const { scrollYProgress } = useScroll({
@@ -81,6 +56,14 @@ export function Thesis() {
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const lineScale = useTransform(scrollYProgress, [0.1, 0.4], [0, 1])
+
+  const levers = leverKeys.map((key, index) => ({
+    id: String(index + 1).padStart(2, '0'),
+    title: t(`thesis.levers.${key}.title`),
+    description: t(`thesis.levers.${key}.description`),
+    icon: leverIcons[index],
+    color: leverColors[index],
+  }))
   
   return (
     <section 
@@ -117,15 +100,15 @@ export function Thesis() {
             transition={{ duration: 0.8 }}
           >
             <div className="w-8 sm:w-12 h-[1px] bg-gradient-to-r from-transparent to-[#4169E1]" />
-            <span className="eyebrow tracking-[0.15em] sm:tracking-[0.25em] text-[0.55rem] sm:text-[0.6rem]">Thesis Statement</span>
+            <span className="eyebrow tracking-[0.15em] sm:tracking-[0.25em] text-[0.55rem] sm:text-[0.6rem]">{t('thesis.eyebrow')}</span>
             <div className="w-8 sm:w-12 h-[1px] bg-gradient-to-l from-transparent to-[#4169E1]" />
           </motion.div>
           
           {/* Main Title - Fluid typography */}
           <h2 className="heading-display text-[clamp(1.5rem,4vw,3.75rem)] mb-4 sm:mb-6 md:mb-8 leading-[1.1] tracking-[-0.03em]">
             <KineticHeading 
-              text="Las palancas del éxito tecnológico"
-              highlightWords={['palancas']}
+              text={t('thesis.title')}
+              highlightWords={['palancas', 'levers']}
             />
           </h2>
           
@@ -138,9 +121,9 @@ export function Thesis() {
           {/* Body Text */}
           <FadeUp delay={0.3}>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#888] leading-[1.7] sm:leading-[1.8] max-w-3xl mx-auto px-2 sm:px-0">
-              En la economía digital actual, la ventaja competitiva no reside únicamente en la idea, 
-              sino en la <span className="text-white font-medium">capacidad de despliegue técnico</span> y 
-              la <span className="text-white font-medium">velocidad de iteración</span>.
+              {t('thesis.description')}{' '}
+              <span className="text-white font-medium">{t('thesis.descHighlight1')}</span> {t('thesis.descConnector')}{' '}
+              <span className="text-white font-medium">{t('thesis.descHighlight2')}</span>.
             </p>
           </FadeUp>
           
@@ -148,8 +131,8 @@ export function Thesis() {
           <FadeUp delay={0.5}>
             <div className="mt-6 sm:mt-8 md:mt-10 pt-6 sm:pt-8 md:pt-10 border-t border-[rgba(255,255,255,0.05)]">
               <p className="text-xs sm:text-sm md:text-base text-[#666] italic">
-                <span className="text-[#4169E1] font-semibold not-italic">Tauler Group</span> actúa como catalizador, 
-                aprovechando <span className="text-white">4 palancas</span> fundamentales:
+                <span className="text-[#4169E1] font-semibold not-italic">Tauler Group</span> {t('thesis.catalyst')}{' '}
+                <span className="text-white">{t('thesis.catalystLevers')}</span> {t('thesis.catalystEnd')}
               </p>
             </div>
           </FadeUp>
@@ -234,4 +217,3 @@ export function Thesis() {
     </section>
   )
 }
-

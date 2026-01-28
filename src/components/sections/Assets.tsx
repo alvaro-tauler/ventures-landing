@@ -1,75 +1,49 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { KineticHeading } from '../KineticText'
 
-const assets = [
-  {
-    id: 'automation',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="16" cy="16" r="6" />
-        <path d="M16 4V8M16 24V28M28 16H24M8 16H4M24.5 7.5L21.5 10.5M10.5 21.5L7.5 24.5M24.5 24.5L21.5 21.5M10.5 10.5L7.5 7.5" strokeLinecap="round" />
-      </svg>
-    ),
-    tag: 'AI Operations',
-    title: 'AI Automation',
-    description: 'Automatización de procesos mediante modelos de lenguaje e IA generativa. Reducción de costes operativos y aumento de throughput.',
-  },
-  {
-    id: 'saas',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="4" y="8" width="24" height="16" rx="2" />
-        <path d="M4 12H28M12 12V24M8 16H10M8 19H10" strokeLinecap="round" />
-      </svg>
-    ),
-    tag: 'Product',
-    title: 'Vertical SaaS',
-    description: 'Plataformas de software especializadas para nichos industriales. Soluciones end-to-end con alta retención y unit economics sólidos.',
-  },
-  {
-    id: 'data',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M4 24L12 16L18 22L28 8" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="28" cy="8" r="2" fill="currentColor" />
-        <path d="M4 8V24H28" strokeLinecap="round" />
-      </svg>
-    ),
-    tag: 'Intelligence',
-    title: 'Data Engines',
-    description: 'Pipelines de datos y sistemas de inteligencia empresarial. Transformación de datos brutos en ventajas competitivas accionables.',
-  },
-  {
-    id: 'process',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="4" y="4" width="10" height="10" rx="2" />
-        <rect x="18" y="4" width="10" height="10" rx="2" />
-        <rect x="4" y="18" width="10" height="10" rx="2" />
-        <rect x="18" y="18" width="10" height="10" rx="2" />
-        <path d="M14 9H18M14 23H18M9 14V18M23 14V18" strokeLinecap="round" />
-      </svg>
-    ),
-    tag: 'IP',
-    title: 'Process IP',
-    description: 'Digitalización y protección de metodologías propietarias. Conversión de conocimiento tácito en propiedad intelectual escalable.',
-  },
-  {
-    id: 'consumer',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="16" cy="10" r="6" />
-        <path d="M6 28C6 22.5 10.5 18 16 18C21.5 18 26 22.5 26 28" strokeLinecap="round" />
-      </svg>
-    ),
-    tag: 'B2C',
-    title: 'Consumer LTV',
-    description: 'Productos digitales B2C con modelos de monetización recurrente. Maximización del valor de vida del cliente mediante personalización.',
-  },
-]
+const assetKeys = ['automation', 'saas', 'data', 'process', 'consumer'] as const
+
+const assetIcons = {
+  automation: (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <circle cx="16" cy="16" r="6" />
+      <path d="M16 4V8M16 24V28M28 16H24M8 16H4M24.5 7.5L21.5 10.5M10.5 21.5L7.5 24.5M24.5 24.5L21.5 21.5M10.5 10.5L7.5 7.5" strokeLinecap="round" />
+    </svg>
+  ),
+  saas: (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="4" y="8" width="24" height="16" rx="2" />
+      <path d="M4 12H28M12 12V24M8 16H10M8 19H10" strokeLinecap="round" />
+    </svg>
+  ),
+  data: (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M4 24L12 16L18 22L28 8" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="28" cy="8" r="2" fill="currentColor" />
+      <path d="M4 8V24H28" strokeLinecap="round" />
+    </svg>
+  ),
+  process: (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="4" y="4" width="10" height="10" rx="2" />
+      <rect x="18" y="4" width="10" height="10" rx="2" />
+      <rect x="4" y="18" width="10" height="10" rx="2" />
+      <rect x="18" y="18" width="10" height="10" rx="2" />
+      <path d="M14 9H18M14 23H18M9 14V18M23 14V18" strokeLinecap="round" />
+    </svg>
+  ),
+  consumer: (
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <circle cx="16" cy="10" r="6" />
+      <path d="M6 28C6 22.5 10.5 18 16 18C21.5 18 26 22.5 26 28" strokeLinecap="round" />
+    </svg>
+  ),
+}
 
 export function Assets() {
+  const { t } = useTranslation()
   const [vibrateKey, setVibrateKey] = useState(0)
   const vibrateRef = useRef<HTMLDivElement>(null)
   
@@ -89,6 +63,14 @@ export function Assets() {
     cardRef.style.setProperty('--mouse-x', `${x}%`)
     cardRef.style.setProperty('--mouse-y', `${y}%`)
   }
+
+  const assets = assetKeys.map((key) => ({
+    id: key,
+    icon: assetIcons[key],
+    tag: t(`assets.items.${key}.tag`),
+    title: t(`assets.items.${key}.title`),
+    description: t(`assets.items.${key}.description`),
+  }))
   
   return (
     <section id="activos" className="section-padding bg-[#050505] relative overflow-hidden">
@@ -117,17 +99,17 @@ export function Assets() {
             >
               <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 md:mb-8">
                 <div className="w-8 sm:w-12 h-[2px] bg-gradient-to-r from-[#4169E1] to-transparent" />
-                <span className="eyebrow tracking-[0.15em] sm:tracking-[0.25em] text-[0.55rem] sm:text-[0.65rem]">Asset Typology</span>
+                <span className="eyebrow tracking-[0.15em] sm:tracking-[0.25em] text-[0.55rem] sm:text-[0.65rem]">{t('assets.eyebrow')}</span>
               </div>
               <h2 className="heading-display text-[clamp(1.75rem,5vw,3.75rem)] mb-4 sm:mb-6 leading-[1]">
                 <KineticHeading 
-                  text="Tipología de"
+                  text={t('assets.title1')}
                   highlightWords={[]}
                 />
                 <br />
                 <KineticHeading 
-                  text="Activos Tecnológicos."
-                  highlightWords={['Activos']}
+                  text={t('assets.title2')}
+                  highlightWords={['Activos', 'Asset']}
                 />
               </h2>
               <div className="h-0.5 sm:h-1 w-16 sm:w-24 bg-gradient-to-r from-[#4169E1] to-transparent" />
@@ -141,9 +123,9 @@ export function Assets() {
               transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
             >
               <p className="text-sm sm:text-base md:text-lg text-[#666] leading-[1.7] sm:leading-[1.8] border-l-2 border-[#4169E1]/30 pl-4 sm:pl-6">
-                Desarrollamos soluciones diseñadas con{' '}
-                <span className="text-white font-medium">lógica industrial</span> y{' '}
-                <span className="text-white font-medium">financiera</span>.
+                {t('assets.description')}{' '}
+                <span className="text-white font-medium">{t('assets.descHighlight1')}</span> {t('assets.descConnector')}{' '}
+                <span className="text-white font-medium">{t('assets.descHighlight2')}</span>.
               </p>
             </motion.div>
           </div>
@@ -244,10 +226,10 @@ export function Assets() {
                 
                 <div className="mb-5 sm:mb-6 md:mb-8">
                   <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 leading-tight tracking-tight">
-                    Tu proyecto
+                    {t('assets.cta.title1')}
                     <br />
                     <span className="relative">
-                      aquí
+                      {t('assets.cta.title2')}
                       <motion.div 
                         className="absolute -bottom-0.5 sm:-bottom-1 left-0 h-[2px] sm:h-[3px] bg-white"
                         initial={{ width: 0 }}
@@ -258,7 +240,7 @@ export function Assets() {
                     </span>
                   </h3>
                   <p className="text-white/65 text-sm sm:text-base leading-relaxed">
-                    Construyamos tu próximo activo digital juntos.
+                    {t('assets.cta.description')}
                   </p>
                 </div>
               </div>
@@ -271,7 +253,7 @@ export function Assets() {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               >
                 <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 md:px-7 py-3 sm:py-3.5 md:py-4 bg-black text-white text-xs sm:text-sm font-semibold uppercase tracking-[0.08em] sm:tracking-[0.1em] group-hover:gap-3 sm:group-hover:gap-4 transition-all duration-300 relative overflow-hidden">
-                  <span className="relative z-10 font-bold">Empecemos</span>
+                  <span className="relative z-10 font-bold">{t('assets.cta.button')}</span>
                   <motion.svg 
                     className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" 
                     fill="none" 

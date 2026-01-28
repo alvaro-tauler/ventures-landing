@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 export function Result() {
+  const { t } = useTranslation()
+
   return (
     <section className="py-16 sm:py-24 md:py-32 bg-[#0A0A0A] relative overflow-hidden">
       {/* Background subtle glow - responsive sizes */}
@@ -19,7 +22,7 @@ export function Result() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="eyebrow text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem]">Tauler Venture Builder</span>
+            <span className="eyebrow text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem]">{t('result.eyebrow')}</span>
           </motion.div>
           
           {/* Main headline - Serif for contrast - Fluid typography */}
@@ -30,8 +33,8 @@ export function Result() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            Ingeniería aplicada a la creación de{' '}
-            <span className="text-gradient-fire">Equity.</span>
+            {t('result.title')}{' '}
+            <span className="text-gradient-fire">{t('result.titleHighlight')}</span>
           </motion.h2>
           
           {/* Body text */}
@@ -42,9 +45,7 @@ export function Result() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Si su organización posee una posición de mercado dominante y busca materializar 
-            activos tecnológicos de alto valor, Tauler Venture Builder proporciona la 
-            infraestructura de ejecución necesaria.
+            {t('result.description')}
           </motion.p>
           
           

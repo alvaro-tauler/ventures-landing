@@ -1,38 +1,17 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
-const pillars = [
-  {
-    number: '01',
-    title: 'Validación de Tesis',
-    subtitle: 'Alpha Stage',
-    description: 'Análisis riguroso de la viabilidad económica y técnica. Auditamos la profundidad del mercado y la capacidad de distribución antes de comprometer recursos de ingeniería. Solo avanzan los proyectos con una ruta clara hacia el ROI.',
-    metrics: ['Market Depth', 'Technical Feasibility', 'ROI Path'],
-  },
-  {
-    number: '02',
-    title: 'Ingeniería de Alta Velocidad',
-    subtitle: 'Build',
-    description: 'Despliegue de nuestro stack tecnológico propietario potenciado por IA. El objetivo es alcanzar la funcionalidad crítica en ciclos cortos, priorizando la robustez arquitectónica y la escalabilidad futura.',
-    metrics: ['AI-Powered Stack', '4-Week Cycles', 'Scalable Architecture'],
-  },
-  {
-    number: '03',
-    title: 'Integración y Despliegue',
-    subtitle: 'Deploy',
-    description: 'Implantación operativa del activo en los canales de distribución. Monitorización de métricas de uso real y optimización basada en datos para asegurar la adopción y la retención.',
-    metrics: ['Channel Integration', 'Real-time Metrics', 'PMF Optimization'],
-  },
-  {
-    number: '04',
-    title: 'Estructuración del Activo',
-    subtitle: 'Liquidity / Scale',
-    description: 'Consolidación del producto como unidad de negocio independiente. Definición de la estrategia de salida o recurrencia: Spin-off tecnológica, licencia de IP o generación de flujos de caja recurrentes.',
-    metrics: ['Spin-off Ready', 'IP Licensing', 'Recurring Revenue'],
-  },
-]
+interface PillarItem {
+  number: string
+  title: string
+  subtitle: string
+  description: string
+  metrics: string[]
+}
 
 export function Pillars() {
+  const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   
@@ -44,6 +23,8 @@ export function Pillars() {
   // Transform scroll Y to horizontal X movement - only on desktop
   // Title + 4 cards + end spacer all scroll together
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-58%'])
+
+  const pillars = t('pillars.items', { returnObjects: true }) as PillarItem[]
   
   return (
     <section 
@@ -63,9 +44,9 @@ export function Pillars() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <span className="eyebrow mb-2 block">Execution Framework</span>
+            <span className="eyebrow mb-2 block">{t('pillars.eyebrow')}</span>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Sistemática de Generación de Valor.
+              {t('pillars.title')}
             </h2>
           </motion.div>
           
@@ -133,14 +114,14 @@ export function Pillars() {
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-[2px] bg-gradient-to-r from-[#4169E1] to-transparent" />
-              <span className="eyebrow tracking-[0.25em]">Execution Framework</span>
+              <span className="eyebrow tracking-[0.25em]">{t('pillars.eyebrow')}</span>
             </div>
             <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-[1.1] mb-6">
-              Sistemática de<br/>Generación de Valor.
+              {t('pillars.title').split(' ').slice(0, 2).join(' ')}<br/>{t('pillars.title').split(' ').slice(2).join(' ')}
             </h2>
-            <p className="text-[#555] text-sm font-mono mb-3">// SCROLL →</p>
+            <p className="text-[#555] text-sm font-mono mb-3">{t('pillars.scrollHint')}</p>
             <p className="text-[#777] text-sm lg:text-base leading-relaxed">
-              Un protocolo estricto diseñado para transformar tesis de inversión en software operativo.
+              {t('pillars.description')}
             </p>
           </motion.div>
           
@@ -209,8 +190,8 @@ export function Pillars() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <p className="text-white font-bold text-lg">Activo Listo</p>
-              <p className="text-[#555] text-sm mt-2">Para escalar o liquidez</p>
+              <p className="text-white font-bold text-lg">{t('pillars.endTitle')}</p>
+              <p className="text-[#555] text-sm mt-2">{t('pillars.endSubtitle')}</p>
             </motion.div>
           </div>
         </motion.div>

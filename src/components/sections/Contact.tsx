@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { MagneticButton } from '../MagneticButton'
 
 // HubSpot Forms API Configuration
@@ -7,6 +8,7 @@ const HUBSPOT_PORTAL_ID = '146295013'
 const HUBSPOT_FORM_GUID = 'e3c23dc7-21b0-48b2-99b1-e574824b6d49'
 
 export function Contact() {
+  const { t } = useTranslation()
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [formData, setFormData] = useState({
     name: '',
@@ -107,16 +109,15 @@ export function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span className="eyebrow mb-4 sm:mb-6 md:mb-8 block text-[0.6rem] sm:text-[0.65rem]">Contacto</span>
+              <span className="eyebrow mb-4 sm:mb-6 md:mb-8 block text-[0.6rem] sm:text-[0.65rem]">{t('contact.eyebrow')}</span>
               
               <h2 className="heading-serif text-[clamp(1.75rem,5vw,3rem)] mb-4 sm:mb-6 md:mb-8">
-                Construyamos el<br/>
-                <span className="text-gradient-fire">futuro</span> juntos.
+                {t('contact.title')}<br/>
+                <span className="text-gradient-fire">{t('contact.titleHighlight')}</span> {t('contact.titleEnd')}
               </h2>
               
               <p className="text-sm sm:text-base md:text-lg text-[#777] mb-8 sm:mb-10 md:mb-12 leading-relaxed max-w-md">
-                ¿Tienes una oportunidad de mercado y necesitas un socio tecnológico 
-                de primer nivel? Estamos listos para ejecutar.
+                {t('contact.description')}
               </p>
 
               {/* Contact info */}
@@ -128,7 +129,7 @@ export function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] mb-0.5 sm:mb-1 font-medium">Email</p>
+                    <p className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] mb-0.5 sm:mb-1 font-medium">{t('contact.email')}</p>
                     <a href="mailto:info@taulergroup.com" className="text-[#4169E1] hover:underline font-medium text-sm sm:text-base">
                       info@taulergroup.com
                     </a>
@@ -143,8 +144,8 @@ export function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] mb-0.5 sm:mb-1 font-medium">Ubicación</p>
-                    <p className="text-[#A0A0A0] text-sm sm:text-base">España</p>
+                    <p className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] mb-0.5 sm:mb-1 font-medium">{t('contact.location')}</p>
+                    <p className="text-[#A0A0A0] text-sm sm:text-base">{t('contact.locationValue')}</p>
                   </div>
                 </div>
               </div>
@@ -173,15 +174,15 @@ export function Contact() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">¡Recibido!</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">{t('contact.form.successTitle')}</h3>
                     <p className="text-[#777] mb-6 sm:mb-8 text-sm sm:text-base">
-                      Nuestro equipo te contactará en menos de 24 horas.
+                      {t('contact.form.successMessage')}
                     </p>
                     <button 
                       onClick={() => setFormState('idle')}
                       className="text-[#4169E1] font-medium hover:underline text-sm sm:text-base"
                     >
-                      Enviar otro mensaje
+                      {t('contact.form.sendAnother')}
                     </button>
                   </motion.div>
                 ) : (
@@ -198,7 +199,7 @@ export function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                       <div className="space-y-1.5 sm:space-y-2">
                         <label htmlFor="name" className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] block font-medium">
-                          Nombre
+                          {t('contact.form.name')}
                         </label>
                         <input
                           type="text"
@@ -207,13 +208,13 @@ export function Contact() {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          placeholder="Tu nombre"
+                          placeholder={t('contact.form.namePlaceholder')}
                           className="text-sm sm:text-base"
                         />
                       </div>
                       <div className="space-y-1.5 sm:space-y-2">
                         <label htmlFor="email" className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] block font-medium">
-                          Email
+                          {t('contact.form.email')}
                         </label>
                         <input
                           type="email"
@@ -222,7 +223,7 @@ export function Contact() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          placeholder="tu@email.com"
+                          placeholder={t('contact.form.emailPlaceholder')}
                           className="text-sm sm:text-base"
                         />
                       </div>
@@ -230,7 +231,7 @@ export function Contact() {
 
                     <div className="space-y-1.5 sm:space-y-2">
                       <label htmlFor="company" className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] block font-medium">
-                        Empresa / Proyecto
+                        {t('contact.form.company')}
                       </label>
                       <input
                         type="text"
@@ -238,14 +239,14 @@ export function Contact() {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        placeholder="Nombre de tu empresa"
+                        placeholder={t('contact.form.companyPlaceholder')}
                         className="text-sm sm:text-base"
                       />
                     </div>
 
                     <div className="space-y-1.5 sm:space-y-2">
                       <label htmlFor="idea" className="text-[10px] sm:text-xs font-sans text-[#888] uppercase tracking-[0.1em] block font-medium">
-                        Tu visión
+                        {t('contact.form.idea')}
                       </label>
                       <textarea
                         id="idea"
@@ -254,14 +255,14 @@ export function Contact() {
                         rows={4}
                         value={formData.idea}
                         onChange={handleChange}
-                        placeholder="Cuéntanos brevemente qué tienes en mente..."
+                        placeholder={t('contact.form.ideaPlaceholder')}
                         className="resize-none text-sm sm:text-base"
                       />
                     </div>
 
                     {formState === 'error' && (
                       <p className="text-red-500 text-xs sm:text-sm text-center">
-                        Hubo un error al enviar. Por favor, inténtalo de nuevo.
+                        {t('contact.form.error')}
                       </p>
                     )}
 
@@ -277,9 +278,9 @@ export function Contact() {
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                             </svg>
-                            Enviando...
+                            {t('contact.form.submitting')}
                           </span>
-                        ) : 'Enviar propuesta'}
+                        ) : t('contact.form.submit')}
                       </button>
                     </MagneticButton>
                   </motion.form>

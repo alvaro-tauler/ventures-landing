@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Lenis from 'lenis'
 import {
   Navbar,
@@ -24,6 +25,7 @@ import {
 type ModalType = 'privacy' | 'cookies' | 'legal' | null
 
 function App() {
+  const { t } = useTranslation()
   const lenisRef = useRef<Lenis | null>(null)
   const [activeModal, setActiveModal] = useState<ModalType>(null)
 
@@ -117,7 +119,7 @@ function App() {
       <LegalModal
         isOpen={activeModal === 'privacy'}
         onClose={closeModal}
-        title="Política de Privacidad y Protección de Datos"
+        title={t('modals.privacyTitle')}
       >
         <PrivacyPolicyContent />
       </LegalModal>
@@ -125,7 +127,7 @@ function App() {
       <LegalModal
         isOpen={activeModal === 'cookies'}
         onClose={closeModal}
-        title="Política de Cookies"
+        title={t('modals.cookiesTitle')}
       >
         <CookiesPolicyContent />
       </LegalModal>
@@ -133,7 +135,7 @@ function App() {
       <LegalModal
         isOpen={activeModal === 'legal'}
         onClose={closeModal}
-        title="Aviso Legal"
+        title={t('modals.legalTitle')}
       >
         <LegalNoticeContent />
       </LegalModal>

@@ -1,11 +1,5 @@
 import { motion } from 'framer-motion'
-
-const footerLinks = [
-  { label: 'Propuesta', href: '#propuesta' },
-  { label: 'Enfoque', href: '#enfoque' },
-  { label: 'Activos', href: '#activos' },
-  { label: 'Contacto', href: '#contacto' },
-]
+import { useTranslation } from 'react-i18next'
 
 interface FooterProps {
   onOpenPrivacy: () => void
@@ -14,7 +8,15 @@ interface FooterProps {
 }
 
 export function Footer({ onOpenPrivacy, onOpenCookies, onOpenLegal }: FooterProps) {
+  const { t } = useTranslation()
   const currentYear = new Date().getFullYear()
+
+  const footerLinks = [
+    { label: t('nav.propuesta'), href: '#propuesta' },
+    { label: t('nav.enfoque'), href: '#enfoque' },
+    { label: t('nav.activos'), href: '#activos' },
+    { label: t('nav.contacto'), href: '#contacto' },
+  ]
 
   return (
     <footer className="bg-[#050505] border-t border-[rgba(255,255,255,0.05)] relative overflow-hidden">
@@ -50,7 +52,7 @@ export function Footer({ onOpenPrivacy, onOpenCookies, onOpenLegal }: FooterProp
               />
             </a>
             <p className="text-xs font-semibold text-[#333] tracking-[0.1em] uppercase">
-              Venture Builder
+              {t('footer.ventureBuilder')}
             </p>
           </motion.div>
           
@@ -96,21 +98,21 @@ export function Footer({ onOpenPrivacy, onOpenCookies, onOpenLegal }: FooterProp
                 onClick={onOpenPrivacy}
                 className="hover:text-[#555] transition-colors text-left"
               >
-                Privacidad
+                {t('footer.privacy')}
               </button>
               <span className="text-[#222]">·</span>
               <button 
                 onClick={onOpenCookies}
                 className="hover:text-[#555] transition-colors text-left"
               >
-                Cookies
+                {t('footer.cookies')}
               </button>
               <span className="text-[#222]">·</span>
               <button 
                 onClick={onOpenLegal}
                 className="hover:text-[#555] transition-colors text-left"
               >
-                Aviso Legal
+                {t('footer.legal')}
               </button>
             </div>
           </motion.div>
@@ -125,11 +127,11 @@ export function Footer({ onOpenPrivacy, onOpenCookies, onOpenLegal }: FooterProp
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="text-[10px] font-mono text-[#222] tracking-[0.15em] uppercase">
-            Built with precision
+            {t('footer.builtWith')}
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#4169E1] animate-pulse" />
-            <span className="text-[10px] font-mono text-[#333]">ONLINE</span>
+            <span className="text-[10px] font-mono text-[#333]">{t('footer.online')}</span>
           </div>
         </motion.div>
       </div>
